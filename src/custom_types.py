@@ -1,8 +1,10 @@
-from typing import Dict, Iterator
+from __future__ import annotations
+from typing import Dict, Iterator, TypeAlias, TYPE_CHECKING
 
 import enum
 
-from IOOP import IOOP
+if TYPE_CHECKING:
+    from IOOP import IOOP
 
 class IOModule(enum.Enum):
     DXT_MPIIO = "DXT_MPIIO"
@@ -19,6 +21,6 @@ class IOType(enum.Enum):
             return f"{self.value}_segments"
         return None
 
-custom_any = str | int
-ModuleRecord = Dict[custom_any, Iterator[IOOP]]
-TypeRecord = Dict[IOType, Iterator[IOOP]]
+custom_any: TypeAlias = str | int
+ModuleRecord: TypeAlias = Dict[custom_any, Iterator['IOOP']]
+TypeRecord: TypeAlias = Dict[IOType, Iterator['IOOP']]
