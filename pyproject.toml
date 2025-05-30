@@ -10,6 +10,8 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "darshan>=3.4.7.0",
+    "notebook>=7.4.3",
+    "pip==25.1",
 ]
 
 [tool.setuptools]
