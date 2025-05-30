@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "darshan-trace-parser"
 version = "0.1.0"
@@ -7,3 +11,6 @@ requires-python = ">=3.13"
 dependencies = [
     "darshan>=3.4.7.0",
 ]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
