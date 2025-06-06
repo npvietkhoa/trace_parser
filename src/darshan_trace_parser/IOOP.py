@@ -1,4 +1,4 @@
-from custom_types import IOModule, IOType
+from .custom_types import IOModule, IOType
 
 
 class IOOP:
@@ -21,6 +21,7 @@ class IOOP:
         return self.end_time - self.start_time
 
     def bandwidth(self):
+        assert self.duration() > 0
         return self.length / self.duration() if self.duration() > 0 else 0
 
     def __str__(self):

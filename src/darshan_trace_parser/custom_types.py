@@ -24,3 +24,4 @@ class IOType(enum.Enum):
 custom_any: TypeAlias = str | int
 ModuleRecord: TypeAlias = Dict[custom_any, Iterator['IOOP']]
 TypeRecord: TypeAlias = Dict[IOType, Iterator['IOOP']]
+TraceRecord: TypeAlias = Dict[IOModule, ModuleRecord]
