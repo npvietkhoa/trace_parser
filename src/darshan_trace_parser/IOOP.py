@@ -1,4 +1,4 @@
-from custom_types import IOModule, IOType
+from .custom_types import IOModule, IOType
 
 
 class IOOP:
@@ -17,14 +17,17 @@ class IOOP:
         self.start_time = start_time
         self.end_time = end_time
 
+    @property
     def duration(self):
         return self.end_time - self.start_time
 
+    @property
     def bandwidth(self):
-        return self.length / self.duration() if self.duration() > 0 else 0
+        assert self.duration > 0
+        return self.length / self.duration if self.duration > 0 else 0
 
     def __str__(self):
         return (f"{self.mod.value} - {self.type.value} - {self.rank} - "
                 f"({self.start_time}, {self.end_time}) - "
                 f"({self.start_offset}, {self.end_offset}) - "
-                f"length={self.length} duration={self.duration()}")
+                f"length={self.length} duration={self.duration}")

@@ -1,10 +1,12 @@
 import os
+from functools import cache, reduce
+
 import darshan
-from typing import Iterator
+from typing import Iterator, Callable, Dict, Tuple, List, Any
 from itertools import chain
 
-from custom_types import IOModule, IOType, ModuleRecord, TypeRecord
-from IOOP import IOOP
+from .custom_types import IOModule, IOType, ModuleRecord, TypeRecord, TraceRecord
+from .IOOP import IOOP
 
 
 class TraceParser:
@@ -32,7 +34,7 @@ class TraceParser:
 
         record_dict = dict()
         for mod in IOModule:
-            record_dict[mod] = self.parse_records(self.records[mod])
+            record_dict[mod] = self.parse_records(mod)
 
         return record_dict
 
@@ -127,3 +129,30 @@ class TraceParser:
                     offset=op_seg["offset"],
                     length=op_seg["length"],
                 )
+
+    def aggregate_op_stat(
+            self,
+            stat_fn: Callable[[IOOP], Any]
+    ) -> Dict[Tuple[IOModule, IOType], List[Any]]:
+        """
+        Traverse all IOOP instances in type_record, apply stat_fn to each,
+        and collect results in a dict keyed by (module, type).
+        """
+        # Flatten all IOOP iterators:
+        ops_stream = chain.from_iterable(
+            chain.from_iterable(record.values() for record in self.parse_trace().values())
+        )
+
+        # Map each IOOP to ((mod, type), stat_fn(op))
+        kv_stream = map(lambda op: ((op.mod, op.type), stat_fn(op)), ops_stream)
+
+        # Reduce into grouped dict
+        def reducer(
+                acc: Dict[Tuple[IOModule, IOType], List[Any]],
+                kv: Tuple[Tuple[IOModule, IOType], Any]
+        ) -> Dict[Tuple[IOModule, IOType], List[Any]]:
+            key, value = kv
+            acc.setdefault(key, []).append(value)
+            return acc
+
+        return reduce(reducer, kv_stream, {})
