@@ -5,7 +5,7 @@ import darshan
 from typing import Iterator, Callable, Dict, Tuple, List, Any
 from itertools import chain
 
-from .custom_types import IOModule, IOType, ModuleRecord, TypeRecord, TraceRecord
+from .custom_types import IOModule, IOType, ModuleRecord, TypeRecord
 from .IOOP import IOOP
 
 

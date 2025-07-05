@@ -1,0 +1,27 @@
+TODO:
+    - parse `largs` from record to IOOP
+
+- `tstart` (timestamp start):
+    - The precise time (in microseconds or nanoseconds) when the function call began.
+    - Used to determine ordering and performance of operations.
+- `tend` (timestamp end)
+    - The time when the function call completed.
+- `level`
+    - Call level in the call stack, indicating nested function depth.
+    - Helps reconstruct hierarchical call sequences or group related events.
+- `func_names[func_id]`
+    - The name of the function invoked (e.g., read, fopen, MPI_File_write_all.
+    - Using Local Log to fetch this information.
+    - func_id is an index into the function name table maintained by Recorder.
+- `tid` (thread ID)
+    - The thread (or rank) that made the call.
+    - Useful for parallel analysis and distinguishing per-thread behavior.
+- `arg_count`
+    - The number of arguments recorded for the function call.
+    - Varies based on the function (e.g., write(fd, buf, count) has 3 arguments).
+- `args`
+    - Raw argument values (e.g., file descriptor, buffer address, size).
+    - May include pointers, flags, sizes, offsets.
+- `largs` (long arguments or logical arguments)
+    - Often a stringified or interpreted form of args.
+    - Provides human-readable info, such as resolved filenames, access modes, buffer sizes.
