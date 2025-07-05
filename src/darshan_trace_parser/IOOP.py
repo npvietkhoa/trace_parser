@@ -23,8 +23,13 @@ class IOOP:
 
     @property
     def bandwidth(self):
+<<<<<<< HEAD
         assert self.duration > 0
         return self.length / self.duration if self.duration > 0 else 0
+=======
+        assert self.duration() > 0
+        return self.length / self.duration() if self.duration() > 0 else 0
+>>>>>>> 70b303be2cdf5dfa5b27c4c446d50c57fa7b1d0b
 
     def __str__(self):
         return (f"{self.mod.value} - {self.type.value} - {self.rank} - "

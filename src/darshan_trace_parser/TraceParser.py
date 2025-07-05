@@ -1,5 +1,9 @@
 import os
+<<<<<<< HEAD
 from functools import cache, reduce
+=======
+from functools import reduce
+>>>>>>> 70b303be2cdf5dfa5b27c4c446d50c57fa7b1d0b
 
 import darshan
 from typing import Iterator, Callable, Dict, Tuple, List, Any
@@ -140,7 +144,11 @@ class TraceParser:
         """
         # Flatten all IOOP iterators:
         ops_stream = chain.from_iterable(
+<<<<<<< HEAD
             chain.from_iterable(record.values() for record in self.parse_trace().values())
+=======
+            chain.from_iterable(record.values() for record in self.records.values())
+>>>>>>> 70b303be2cdf5dfa5b27c4c446d50c57fa7b1d0b
         )
 
         # Map each IOOP to ((mod, type), stat_fn(op))
