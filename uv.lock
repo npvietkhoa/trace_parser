@@ -272,6 +272,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "darshan" },
+    { name = "ipykernel" },
     { name = "notebook" },
     { name = "pip" },
 ]
@@ -279,6 +280,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "darshan", specifier = ">=3.4.7.0" },
+    { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "notebook", specifier = ">=7.4.3" },
     { name = "pip", specifier = "==25.1" },
 ]
