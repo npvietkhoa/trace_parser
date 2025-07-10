@@ -27,6 +27,9 @@ class TraceParser:
 
     @cache
     def parse_trace(self) -> dict[otf2.definitions.Location, IOOP]:
+        """
+        Parse the trace file and extract IOOP events.
+        """
         event_stack = defaultdict(list)
         ioop_stack = defaultdict(list)
         with otf2.reader.open(self.fp) as trace:
