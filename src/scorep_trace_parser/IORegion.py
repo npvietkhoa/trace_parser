@@ -4,7 +4,10 @@ from .IOOP import IOOP
 from .custom_types import custom_any
 
 class IORegion:
-    def __init__(self, name, rank, start_time, end_time, ioop: IOOP):
+    #TODO: Implement IORegion class to represent a region of IO operations.
+    # Region can contains ioop - i/o operation
+    # Score-P records regions and IO operations separately.
+    def __init__(self, name, rank, start_time, end_time, ioop: IOOP = None):
         assert start_time < end_time, "Start time must be less than end time"
         self.name = name
         self.rank = rank

@@ -1,9 +1,10 @@
 from __future__ import annotations
-from .custom_types import IOMod, IOPradigm
+from .custom_types import IOMod, IOParadigm
 
 class IOOP:
-    def __init__(self, mod: IOMod, paradigm: IOPradigm, start_time, end_time, bytes_request, bytes_result):
-        assert start_time < end_time, "Start time must be less than end time"
+    def __init__(self, fname: str, mod: IOMod, paradigm: IOParadigm, start_time, end_time, bytes_request, bytes_result):
+        assert start_time <= end_time, "Start time must be less than end time"
+        self.fname = fname #Hotfix to include information about function name
         self.mod = mod
         self.paradigm = paradigm
         self.start_time = start_time
